@@ -214,6 +214,7 @@ class ClinicServiceTests {
 		pet7 = this.pets.findById(7);
 		assertThat(pet7.getVisits().size()).isEqualTo(found + 1);
 		assertThat(visit.getId()).isNotNull();
+		assertThat(visit.getVetId()).isNotNull();
 	}
 
 	@Test
