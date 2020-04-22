@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Juergen Hoeller
@@ -108,6 +109,13 @@ class PetController {
 			this.pets.save(pet);
 			return "redirect:/owners/{ownerId}";
 		}
+	}
+
+	@GetMapping({ "/petsByVet/{vetId}" })
+	public @ResponseBody List<Integer> showResourcesPetList(@PathVariable("vetId") int vetId) {
+		// Here we are returning an object of type 'Pets' rather than a collection of Pet
+		// objects so it is simpler for JSon/Object mapping
+		return this.pets.findPetsByVet(vetId);
 	}
 
 }

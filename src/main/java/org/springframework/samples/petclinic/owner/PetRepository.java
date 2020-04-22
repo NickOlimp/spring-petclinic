@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -55,5 +56,9 @@ public interface PetRepository extends Repository<Pet, Integer> {
 	 * @param pet the {@link Pet} to save
 	 */
 	void save(Pet pet);
+
+	@Query("SELECT Pet.id FROM Vet vets left join fetch vets.visits left join fetch Visit.petId WHERE vets.id =:vetId")
+	@Transactional(readOnly = true)
+	List<Integer> findPetsByVet(@Param("vetId") Integer vetId);
 
 }
