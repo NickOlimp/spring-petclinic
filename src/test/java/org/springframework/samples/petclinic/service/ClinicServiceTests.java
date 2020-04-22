@@ -206,6 +206,7 @@ class ClinicServiceTests {
 		int found = pet7.getVisits().size();
 		Visit visit = new Visit();
 		pet7.addVisit(visit);
+		visit.setVetId(1);
 		visit.setDescription("test");
 		this.visits.save(visit);
 		this.pets.save(pet7);
