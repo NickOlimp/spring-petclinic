@@ -111,11 +111,4 @@ class PetController {
 		}
 	}
 
-	@GetMapping({ "/petsByVet/{vetId}" })
-	public @ResponseBody List<Integer> showResourcesPetList(@PathVariable("vetId") int vetId) {
-		// Here we are returning an object of type 'Pets' rather than a collection of Pet
-		// objects so it is simpler for JSon/Object mapping
-		return this.pets.findPetsByVet(vetId);
-	}
-
 }

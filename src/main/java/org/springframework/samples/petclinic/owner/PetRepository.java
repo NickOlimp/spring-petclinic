@@ -57,8 +57,4 @@ public interface PetRepository extends Repository<Pet, Integer> {
 	 */
 	void save(Pet pet);
 
-	@Query("SELECT Pet.id FROM Vet vets left join fetch vets.visits left join fetch Visit.petId WHERE vets.id =:vetId")
-	@Transactional(readOnly = true)
-	List<Integer> findPetsByVet(@Param("vetId") Integer vetId);
-
 }

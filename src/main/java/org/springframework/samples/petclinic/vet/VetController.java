@@ -17,8 +17,10 @@ package org.springframework.samples.petclinic.vet;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -53,6 +55,11 @@ class VetController {
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.vets.findAll());
 		return vets;
+	}
+
+	@GetMapping({ "/vets/{vetId}/pets" })
+	public @ResponseBody List<Integer> getPetsByVet(@PathVariable("vetId") int vetId) {
+		return this.vets.findPetsByVet(vetId);
 	}
 
 }
