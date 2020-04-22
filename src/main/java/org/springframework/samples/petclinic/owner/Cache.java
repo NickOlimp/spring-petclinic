@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.owner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 
 public class Cache {
@@ -10,7 +11,8 @@ public class Cache {
 	static OwnerRepository owners;
 	static Collection<Owner> allOwnersCache;
 
-	static {
+	@PostConstruct
+	private void init() {
 		allOwnersCache = owners.findByLastName("");
 	}
 
